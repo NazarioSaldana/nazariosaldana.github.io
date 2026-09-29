@@ -1,21 +1,39 @@
-function About(){
-    return(
-        <section id="about" className="about-section">
-            <h2>About Me</h2>
-            <div className="about-content">
-                <p>
-                    I'm Nazario, a Houston native, a first-generation Hispanic college student, and studying Electrical & Comptuer Engineering at UT Austin.
-                </p>
-                <p>
-                    I love embedded systems and how it is used to bring hardware to life. I am also captivated by the challenges that come when trying to implement functional software into a hardware product.
-                </p>
-                <p>
-                    From a young age I learned the value and meaning of hard-work, the importance of community, and the resilience that comes from the pride of my Mexican heritage.
-                </p>
-            </div>
-        </section>
-    )
+import { about, interests } from '../data'
 
+function About() {
+  return (
+    <section id="about" className="section">
+      <div className="wrap">
+        <div className="section__head reveal">
+          <p className="kicker">01 · about</p>
+          <h2>A little about me</h2>
+        </div>
+
+        <div className="about__grid">
+          <div className="about__bio reveal">
+            {about.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+
+          <div className="reveal">
+            <h3 className="subhead">Off the clock</h3>
+            <div className="interests">
+              {interests.map((it) => (
+                <div className="interest" key={it.title}>
+                  <span className="interest__icon">{it.icon}</span>
+                  <div>
+                    <h4>{it.title}</h4>
+                    <p>{it.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 export default About

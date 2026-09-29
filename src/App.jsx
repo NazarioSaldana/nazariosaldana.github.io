@@ -1,28 +1,51 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
 import NavBar from './components/NavBar'
 import Hero from './components/Hero'
 import About from './components/About'
-import Projects from './components/Projects' 
+import Now from './components/Now'
+import Projects from './components/Projects'
+import Arcade from './components/Arcade'
+import Leadership from './components/Leadership'
+import Toolbox from './components/Toolbox'
 import Contact from './components/Contact'
-import './App.css'
 
 function App() {
+  // Fade sections in as they scroll into view
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal')
+    if (!('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('in'))
+      return
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in')
+            io.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.12 },
+    )
+    els.forEach((el) => io.observe(el))
+    return () => io.disconnect()
+  }, [])
+
   return (
-    <BrowserRouter>
-      <div className="main-container">
-        <NavBar />
-        
-        <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/about" element={<About />} />
-          
-          <Route path="/projects" element={<Projects />} />
-          
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-        
-      </div>
-    </BrowserRouter>
+    <>
+      <NavBar />
+      <main>
+        <Hero />
+        <About />
+        <Now />
+        <Projects />
+        <Arcade />
+        <Leadership />
+        <Toolbox />
+      </main>
+      <Contact />
+    </>
   )
 }
 

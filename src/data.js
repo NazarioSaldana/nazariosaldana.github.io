@@ -47,7 +47,7 @@ export const interests = [
   {
     icon: '👾',
     title: 'Retro games',
-    text: 'So much so that I built Space Invaders on a microcontroller. You can play it below.',
+    text: 'So much so that I built Space Invaders on a microcontroller. You can play it in the Arcade tab.',
   },
   {
     icon: '🤝',
@@ -71,14 +71,11 @@ export const now = [
   { verb: 'Mentoring', what: '8 first-year Ramshorn Scholars through their transition into college' },
 ]
 
-export const projectFilters = ['All', 'Embedded', 'Hardware', 'Software']
-
 export const projects = [
   {
     id: 'tracker',
     title: 'Wearable Fitness Tracker',
     status: 'In progress',
-    categories: ['Embedded', 'Hardware'],
     tech: 'C, BLE, KiCad, Swift',
     description: 'A wrist-worn tracker that streams heart rate, SpO2, and motion data over BLE to a native iOS app.',
     fullDetails:
@@ -92,7 +89,6 @@ export const projects = [
     id: 'lc3b',
     title: 'LC-3b Machine Architecture',
     status: 'In progress',
-    categories: ['Software'],
     tech: 'C, Computer Architecture',
     description: 'A two-pass assembler, an instruction-level simulator, and a microcoded microarchitecture simulator for the LC-3b ISA.',
     fullDetails:
@@ -106,7 +102,6 @@ export const projects = [
     id: 'atv',
     title: 'ASCEND ATV Embedded Firmware',
     status: 'Ongoing',
-    categories: ['Embedded', 'Hardware'],
     tech: 'Raspberry Pi, Embedded Control',
     description: 'Firmware for synchronized dual-actuator control, calibrated to keep the hardware from damaging itself.',
     fullDetails:
@@ -120,11 +115,10 @@ export const projects = [
   {
     id: 'invaders',
     title: 'Space Invaders on MSPM0G3507',
-    categories: ['Embedded'],
     tech: 'C, Game Programming',
     description: 'A real-time game on a microcontroller with interrupt-driven input, custom sprites, and DAC audio.',
     fullDetails:
-      'A fully functional arcade clone running on bare-metal microcontroller hardware, with all graphics, sound, and game logic written in C. (There’s a web remake in the Arcade section below.)',
+      'A fully functional arcade clone running on bare-metal microcontroller hardware, with all graphics, sound, and game logic written in C. (There’s a web remake in the Arcade tab.)',
     process:
       'Used interrupt system logic for real-time input, custom graphics, and audio. Wrote modular firmware covering collision detection, event timing, and a real-time score system. The spaceship moves on a 128×160 ST7735 LCD, controlled with a slide potentiometer as analog input, with 12-bit DAC playback for sound and UART for debugging.',
     skills: ['Embedded C', 'ISRs', 'ADC / DAC', 'UART / SPI', 'Driver Development'],

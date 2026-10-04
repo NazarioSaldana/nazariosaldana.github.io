@@ -313,16 +313,16 @@ function Arcade() {
   return (
     <section id="arcade" className="section section--tinted">
       <div className="wrap">
-        <div className="section__head reveal">
-          <p className="kicker">04 · arcade</p>
-          <h2>Insert coin 🪙</h2>
+        <div className="section__head">
+          <p className="kicker">arcade</p>
+          <h1 tabIndex={-1}>Insert coin</h1>
           <p className="section__sub">
             I originally built Space Invaders in C on an MSPM0 microcontroller with a 128×160 LCD. This is the web
             remake. Beat my score?
           </p>
         </div>
 
-        <div className="arcade reveal">
+        <div className="arcade">
           <div className="arcade__hud">
             <span>
               SCORE <b>{String(hud.score).padStart(5, '0')}</b>

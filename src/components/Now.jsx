@@ -4,12 +4,12 @@ function Now() {
   return (
     <section id="now" className="section section--tinted">
       <div className="wrap">
-        <div className="section__head reveal">
-          <p className="kicker">02 · now</p>
+        <div className="section__head">
+          <p className="kicker">now</p>
           <h2>What I'm up to right now</h2>
           <p className="section__sub">A live-ish status board, updated whenever life changes.</p>
         </div>
-        <ul className="now reveal">
+        <ul className="now">
           {now.map((n) => (
             <li key={n.verb} className="now__item">
               <span className="now__verb">

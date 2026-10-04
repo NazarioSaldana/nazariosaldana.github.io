@@ -43,15 +43,15 @@ function Leadership() {
   return (
     <section id="leadership" className="section">
       <div className="wrap">
-        <div className="section__head reveal">
-          <p className="kicker">05 · leadership</p>
-          <h2>Community is the whole point</h2>
+        <div className="section__head">
+          <p className="kicker">experience</p>
+          <h1 tabIndex={-1}>Community is the whole point</h1>
           <p className="section__sub">
             Engineering is a team sport. Here's where I've been showing up outside the lab.
           </p>
         </div>
 
-        <div className="stats reveal">
+        <div className="stats">
           {stats.map((s) => (
             <div className="stat" key={s.label}>
               <div className="stat__num">
@@ -62,7 +62,7 @@ function Leadership() {
           ))}
         </div>
 
-        <ol className="timeline reveal">
+        <ol className="timeline">
           {leadership.map((l) => (
             <li key={l.role} className={`timeline__item ${l.current ? 'is-current' : ''}`}>
               <div className="timeline__meta">

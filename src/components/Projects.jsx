@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
-import { projectFilters, projects } from '../data'
+import { useCallback, useEffect, useRef } from 'react'
+import { Link, useNavigate, useParams } from 'react-router'
+import { projects } from '../data'
 
 function Thumb({ project }) {
   if (project.youtubeId) {
@@ -16,13 +17,18 @@ function Thumb({ project }) {
 }
 
 function ProjectModal({ project, onClose }) {
+  const closeBtn = useRef(null)
+
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && onClose()
+    const opener = document.activeElement
     window.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
+    closeBtn.current?.focus()
     return () => {
       window.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
+      opener?.focus?.({ preventScroll: true })
     }
   }, [onClose])
 
@@ -35,7 +41,7 @@ function ProjectModal({ project, onClose }) {
         aria-label={project.title}
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modal__close" onClick={onClose} aria-label="Close">
+        <button ref={closeBtn} className="modal__close px-btn" onClick={onClose} aria-label="Close">
           ✕
         </button>
         <div className="modal__scroll">
@@ -82,37 +88,28 @@ function ProjectModal({ project, onClose }) {
 }
 
 function Projects() {
-  const [filter, setFilter] = useState('All')
-  const [active, setActive] = useState(null)
-  const close = useCallback(() => setActive(null), [])
-  const shown = filter === 'All' ? projects : projects.filter((p) => p.categories.includes(filter))
+  // The open project lives in the URL (#/projects/:id), so each one can be linked directly
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const active = projects.find((p) => p.id === id)
+  const close = useCallback(() => navigate('/projects'), [navigate])
+
+  useEffect(() => {
+    if (id && !active) navigate('/projects', { replace: true })
+  }, [id, active, navigate])
 
   return (
     <section id="projects" className="section">
       <div className="wrap">
-        <div className="section__head reveal">
-          <p className="kicker">03 · projects</p>
-          <h2>Things I've built</h2>
+        <div className="section__head">
+          <p className="kicker">projects</p>
+          <h1 tabIndex={-1}>Things I've built</h1>
           <p className="section__sub">Click any card for the full story, plus video when there is one.</p>
         </div>
 
-        <div className="filters reveal" role="tablist" aria-label="Filter projects">
-          {projectFilters.map((f) => (
-            <button
-              key={f}
-              role="tab"
-              aria-selected={filter === f}
-              className={`filter ${filter === f ? 'filter--on' : ''}`}
-              onClick={() => setFilter(f)}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-
-        <div className="projects reveal">
-          {shown.map((p) => (
-            <button key={p.id} className="card" onClick={() => setActive(p)}>
+        <div className="projects">
+          {projects.map((p) => (
+            <Link key={p.id} to={`/projects/${p.id}`} className="card dialog">
               <div className="card__thumb">
                 <Thumb project={p} />
                 {p.mediaType === 'video' && <span className="card__play">▶</span>}
@@ -123,7 +120,7 @@ function Projects() {
                 <p>{p.description}</p>
                 <span className="card__tech">{p.tech}</span>
               </div>
-            </button>
+            </Link>
           ))}
         </div>
       </div>

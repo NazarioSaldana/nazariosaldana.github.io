@@ -4,12 +4,12 @@ function Toolbox() {
   return (
     <section id="toolbox" className="section section--tinted">
       <div className="wrap">
-        <div className="section__head reveal">
-          <p className="kicker">06 · toolbox</p>
-          <h2>What's on my bench</h2>
+        <div className="section__head">
+          <p className="kicker">skills</p>
+          <h1 tabIndex={-1}>What's on my bench</h1>
         </div>
 
-        <div className="toolbox reveal">
+        <div className="toolbox">
           {toolbox.map((g) => (
             <div className="toolbox__group" key={g.group}>
               <h3 className="subhead">{g.group}</h3>
@@ -34,7 +34,7 @@ function Toolbox() {
           </div>
         </div>
 
-        <div className="honors reveal">
+        <div className="honors">
           <h3 className="subhead">Honors</h3>
           <div className="honors__list">
             {honors.map((h) => (

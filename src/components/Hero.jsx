@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router'
 import { buildWords, profile, toolbox } from '../data'
 
 // One beat of an ECG trace, 200 units wide. Two are visible at a time; a third is drawn
@@ -72,9 +73,8 @@ function Hero() {
       <div className="wrap hero__grid">
         <div className="hero__text">
           <p className="kicker">// hello, world</p>
-          <h1>
-            Hey, I'm <span className="name-gradient">{profile.firstName}</span>
-            <span className="wave">👋</span>
+          <h1 tabIndex={-1}>
+            Hey, I'm <span className="name-hl">{profile.firstName}</span>!
           </h1>
           <p className="hero__build">
             I build{' '}
@@ -87,12 +87,19 @@ function Hero() {
             likes making hardware do fun things.
           </p>
           <div className="hero__cta">
-            <a href="#projects" className="btn btn--primary">
-              See my projects →
-            </a>
-            <a href="#arcade" className="btn btn--ghost">
-              👾 Play a game
-            </a>
+            <Link to="/projects" className="btn btn--primary">
+              See my projects
+            </Link>
+            <Link to="/arcade" className="btn btn--ghost">
+              Play a game
+            </Link>
+            <button
+              type="button"
+              className="btn btn--ghost"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Contact me
+            </button>
           </div>
           <ul className="hero__chips">
             <li>📍 {profile.location}</li>

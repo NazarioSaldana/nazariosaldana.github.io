@@ -35,7 +35,7 @@ function ProjectModal({ project, onClose }) {
   return (
     <div className="modal" onClick={onClose}>
       <div
-        className="modal__panel"
+        className="modal__panel dialog"
         role="dialog"
         aria-modal="true"
         aria-label={project.title}

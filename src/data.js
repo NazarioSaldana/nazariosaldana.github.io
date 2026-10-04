@@ -32,7 +32,7 @@ export const interests = [
   {
     icon: '⚽',
     title: 'FC Barcelona',
-    text: 'Blaugrana through and through. The shimmer on my name up top? Those are Barça colors.',
+    text: 'Blaugrana through and through.',
   },
   {
     icon: '🇲🇽',

@@ -16,18 +16,16 @@ import Contact from './components/Contact'
 function Layout() {
   const { pathname } = useLocation()
   const tab = '/' + (pathname.split('/')[1] || '')
-  const first = useRef(true)
+  const prevTab = useRef(tab)
 
   // On every tab change: reset scroll, update the title, and move focus to the new heading
-  // (skipped on first load so we don't steal focus from the page)
+  // (skipped on first load, i.e. when the tab hasn't changed, so we don't steal focus)
   useEffect(() => {
     const t = tabs.find((x) => x.path === tab)
     document.title = t?.title ? `${t.title} · ${profile.name}` : profile.name
-    window.scrollTo(0, 0)
-    if (first.current) {
-      first.current = false
-      return
-    }
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    if (prevTab.current === tab) return
+    prevTab.current = tab
     document.querySelector('main h1')?.focus({ preventScroll: true })
   }, [tab])
 

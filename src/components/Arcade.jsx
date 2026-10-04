@@ -137,9 +137,9 @@ function Arcade() {
       return {
         bg: cs.getPropertyValue('--game-bg').trim(),
         ink: cs.getPropertyValue('--game-ink').trim(),
-        a: cs.getPropertyValue('--blue').trim(),
-        b: cs.getPropertyValue('--garnet').trim(),
-        gold: cs.getPropertyValue('--gold').trim(),
+        a: cs.getPropertyValue('--game-a').trim(),
+        b: cs.getPropertyValue('--game-b').trim(),
+        gold: cs.getPropertyValue('--game-c').trim(),
       }
     }
 
@@ -343,7 +343,7 @@ function Arcade() {
               <div className="arcade__overlay">
                 {status === 'over' && <p className="arcade__over">GAME OVER · {hud.score} pts</p>}
                 <button className="btn btn--primary" onClick={start}>
-                  {status === 'over' ? '↻ Play again' : '▶ Start game'}
+                  {status === 'over' ? 'Play again' : '▶ Start'}
                 </button>
                 <p className="arcade__keys">
                   <kbd>←</kbd> <kbd>→</kbd> move · <kbd>Space</kbd> fire

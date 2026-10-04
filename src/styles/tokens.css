@@ -1,1 +1,50 @@
-/* placeholder, filled in during restyle */
+/* ---------- Palette & design tokens ----------
+   Every color on the site comes from here. Tweak these to retheme.
+   Rule of thumb: text is always --ink / --muted / --accent-text on a light fill;
+   the pastels are fills and decoration, never text on cream. */
+:root {
+  /* Pastel palette */
+  --px-cream: #fff8e7;
+  --px-cream-2: #f6ecd2;
+  --px-white: #ffffff;
+  --px-red: #f7b2b2;
+  --px-red-strong: #e0606e;
+  --px-mint: #bfe8cf;
+  --px-sky: #b4dcf2;
+  --px-lemon: #ffe89a;
+  --px-lavender: #d6c8f2;
+  --px-peach: #ffd2b0;
+  --px-gb: #cfe3a6; /* handheld LCD green */
+  --px-gb-ink: #2f4a2f;
+
+  /* Roles */
+  --bg: var(--px-cream);
+  --bg-tint: var(--px-cream-2);
+  --surface: var(--px-white);
+  --ink: #2b2b3a;
+  --muted: #545468;
+  --accent-text: #922a3f; /* readable red for small labels */
+  --focus: #2f62c9;
+  --live: #3f9d5e;
+  --dialog-rule: var(--px-sky); /* inner rule of dialogue boxes */
+  --dot: rgba(43, 43, 58, 0.09);
+
+  /* Arcade canvas (read by Arcade.jsx) */
+  --game-bg: #2b2b3a;
+  --game-ink: #fff8e7;
+  --game-a: var(--px-sky);
+  --game-b: var(--px-red);
+  --game-c: var(--px-lemon);
+
+  /* Shape */
+  --border: 4px;
+  --radius: 6px;
+  --shadow: 4px 4px 0 var(--ink);
+  --shadow-lg: 6px 6px 0 var(--ink);
+
+  /* Type */
+  --font-display: 'Press Start 2P', ui-monospace, Menlo, monospace;
+  --font-body: 'Pixelify Sans', ui-rounded, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  color-scheme: light;
+}

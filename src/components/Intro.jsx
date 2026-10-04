@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { profile } from '../data'
 import PixelSprite from './PixelSprite'
 import { HEART, heartPalette } from '../sprites'
@@ -20,6 +20,7 @@ function shouldPlay() {
 function Intro() {
   const [state, setState] = useState(() => (shouldPlay() ? 'on' : 'off')) // on | leaving | off
 
+  const skipBtn = useRef(null)
   const dismiss = useCallback(() => setState((s) => (s === 'on' ? 'leaving' : s)), [])
 
   useEffect(() => {
@@ -30,6 +31,7 @@ function Intro() {
       // storage blocked; the intro will just play again next load
     }
     document.body.style.overflow = 'hidden'
+    skipBtn.current?.focus()
     window.addEventListener('keydown', dismiss)
     const t = setTimeout(dismiss, AUTO_CONTINUE_MS)
     return () => {
@@ -65,7 +67,7 @@ function Intro() {
         <p className="intro__start">▶ PRESS START</p>
         <p className="intro__copy">© {new Date().getFullYear()} {profile.name}</p>
       </div>
-      <button type="button" className="intro__skip px-btn" onClick={dismiss} autoFocus>
+      <button ref={skipBtn} type="button" className="intro__skip px-btn" onClick={dismiss}>
         Skip
       </button>
     </div>

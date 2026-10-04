@@ -57,7 +57,7 @@ function TabBar() {
             ))}
             <li>
               <a className="tabbar__tab tabbar__tab--ext" href={profile.resume} target="_blank" rel="noreferrer">
-                Resume ↗
+                Resume
               </a>
             </li>
           </ul>

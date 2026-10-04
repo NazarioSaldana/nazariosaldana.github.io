@@ -10,7 +10,7 @@ function About() {
         </div>
 
         <div className="about__grid">
-          <div className="about__bio">
+          <div className="about__bio dialog">
             {about.map((p, i) => (
               <p key={i}>{p}</p>
             ))}

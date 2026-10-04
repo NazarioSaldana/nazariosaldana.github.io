@@ -131,48 +131,6 @@ export const projects = [
     mediaType: 'video',
     youtubeId: 'lTtsTbqW0g0',
   },
-  {
-    id: 'fpga',
-    title: 'FPGA Stopwatch Processor',
-    categories: ['Hardware'],
-    tech: 'Verilog, FPGA',
-    description: 'A 4-mode digital counter driven by a 7-state HLSM, synthesized and validated on a Basys3 FPGA.',
-    fullDetails:
-      'A custom hardware processor designed from scratch to manage precise timing and multi-mode counting.',
-    process:
-      'Designed a 4-mode digital counter and a 7-state HLSM in behavioral Verilog. Built two clock dividers from 16-bit and 20-bit counters, and developed BCD arithmetic with 4-bit overflow/underflow detection for accurate decimal counting.',
-    skills: ['Verilog', 'FPGA Synthesis', 'State Machines', 'Timing Analysis'],
-    mediaType: 'image',
-    image: 'FPGA-PlaceHolder.png',
-  },
-  {
-    id: 'dungeon',
-    title: 'Dungeon Crawler RPG',
-    categories: ['Software'],
-    tech: 'C++, OOP',
-    description: 'A terminal RPG built on deep class hierarchies and custom destructors, with zero leaks under Valgrind.',
-    fullDetails:
-      'A terminal-based role-playing game focused on dynamic inventory management, enemy encounters, and strict memory safety.',
-    process:
-      'Managed dynamic object ownership across inventories with custom destructors. Validated every allocation to reach zero leaks under Valgrind, and used dynamic_cast with STL vectors for type-safe runtime logic.',
-    skills: ['OOP Architecture', 'Memory Management', 'Valgrind', 'C++ STL'],
-    mediaType: 'video',
-    youtubeId: 'OvL9C99AwjQ',
-  },
-  {
-    id: 'animal',
-    title: 'Learning Animal Guessing Game',
-    categories: ['Software'],
-    tech: 'C, Data Structures',
-    description: 'A game that learns as you play, built on binary decision trees, hash tables, and BFS validation.',
-    fullDetails:
-      'An algorithm-heavy C program that uses decision trees to learn new animals from the player and guess better next time.',
-    process:
-      'Implemented a hash table for stats and an undo/redo system with dual stacks. Wrote BFS-based validation to verify tree integrity and make sure no cycles or unreachable nodes exist in memory.',
-    skills: ['Trees & Hash Tables', 'BFS', 'Memory Tracking', 'C'],
-    mediaType: 'video',
-    youtubeId: '3BWkinqXRr4',
-  },
 ]
 
 export const stats = [

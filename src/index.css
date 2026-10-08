@@ -16,7 +16,8 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -50,7 +51,15 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.05rem, 2.6vw, 1.4rem);
+  font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+}
+
+/* Smaller headings use the softer pixel font so they stay readable */
+h3,
+h4 {
+  font-family: var(--font-pixel);
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 h1:focus {
@@ -74,11 +83,13 @@ h1:focus {
 }
 
 .kicker {
-  font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
   text-transform: uppercase;
   color: var(--accent-text);
   margin: 0 0 14px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 .kicker::before {
@@ -86,11 +97,13 @@ h1:focus {
 }
 
 .subhead {
-  font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
   text-transform: uppercase;
   color: var(--muted);
   margin: 0 0 14px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 /* Square "LED" status dot */
@@ -142,8 +155,8 @@ h1:focus {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: var(--font-display);
-  font-size: 0.72rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
   line-height: 1.4;
   text-transform: uppercase;
   padding: 14px 18px;
@@ -152,6 +165,8 @@ h1:focus {
   background: var(--surface);
   color: var(--ink);
   box-shadow: var(--shadow);
+  font-weight: 800;
+  letter-spacing: 0.04em;
 }
 
 .btn--primary {
@@ -181,7 +196,7 @@ h1:focus {
 }
 
 .tag {
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.3;
   padding: 4px 10px;
   background: var(--px-sky);
@@ -199,14 +214,16 @@ h1:focus {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-display);
-  font-size: 0.55rem;
-  text-transform: uppercase;
-  padding: 5px 8px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  text-transform: none;
+  padding: 2px 8px;
   background: var(--px-mint);
   color: var(--ink);
   border: 2px solid var(--ink);
   border-radius: 3px;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 .badge--float {
@@ -222,8 +239,9 @@ kbd {
   border: 2px solid currentColor;
   border-bottom-width: 4px;
   border-radius: 3px;
-  font-family: var(--font-display);
-  font-size: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 /* ---------- Tab bar (game menu) ---------- */
@@ -283,12 +301,13 @@ kbd {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-display);
-  font-size: 0.62rem;
+  font-family: var(--font-pixel);
+  font-size: 1.15rem;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 10px 10px;
+  padding: 6px 10px;
   border-radius: 3px;
+  font-weight: 600;
 }
 
 /* The ▶ cursor, like an in-game menu. Reserved space so nothing shifts. */
@@ -320,7 +339,6 @@ kbd {
 .tabbar__menu-btn {
   display: none;
   margin-left: auto;
-  padding: 12px 14px;
   background: var(--px-lemon);
 }
 
@@ -357,7 +375,7 @@ kbd {
   }
 
   .tabbar__tab {
-    font-size: 0.78rem;
+    font-size: 1.3rem;
     padding: 14px 12px;
   }
 
@@ -499,9 +517,10 @@ kbd {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-display);
-  font-size: 0.55rem;
+  font-family: var(--font-pixel);
+  font-size: 1rem;
   margin-bottom: 12px;
+  font-weight: 600;
 }
 
 .scope__tag {
@@ -564,15 +583,16 @@ kbd {
 
 .scope__label,
 .scope__unit {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 
 .scope__value {
-  font-family: var(--font-display);
-  font-size: clamp(0.8rem, 2.4vw, 1rem);
-  line-height: 1.8;
+  font-family: var(--font-pixel);
+  font-size: 1.5rem;
+  line-height: 1.3;
   font-variant-numeric: tabular-nums;
+  font-weight: 600;
 }
 
 .heart {
@@ -608,11 +628,12 @@ kbd {
 }
 
 .ticker__track span {
-  font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-family: var(--font-pixel);
+  font-size: 1.15rem;
   text-transform: uppercase;
-  padding: 14px 0;
+  padding: 10px 0;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .ticker__track span::after {
@@ -657,10 +678,11 @@ kbd {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-display);
-  font-size: 0.65rem;
+  font-family: var(--font-pixel);
+  font-size: 1.15rem;
   text-transform: uppercase;
   color: var(--accent-text);
+  font-weight: 600;
 }
 
 /* ---------- About ---------- */
@@ -718,8 +740,8 @@ kbd {
 }
 
 .interest h4 {
-  font-size: 0.62rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  line-height: 1.3;
   margin-bottom: 6px;
 }
 
@@ -816,8 +838,8 @@ kbd {
 }
 
 .card__body h3 {
-  font-size: 0.75rem;
-  line-height: 1.7;
+  font-size: 1.3rem;
+  line-height: 1.3;
 }
 
 .card__body p {
@@ -829,7 +851,7 @@ kbd {
 
 .card__tech {
   margin-top: auto;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--accent-text);
 }
@@ -899,7 +921,7 @@ kbd {
 }
 
 .modal__body h4 {
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   text-transform: uppercase;
   color: var(--accent-text);
   margin: 26px 0 10px;
@@ -925,9 +947,10 @@ kbd {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 8px 16px;
-  font-family: var(--font-display);
-  font-size: 0.6rem;
+  font-family: var(--font-pixel);
+  font-size: 1.1rem;
   padding: 0 4px 12px;
+  font-weight: 600;
 }
 
 .arcade__hud b {
@@ -968,10 +991,11 @@ kbd {
 }
 
 .arcade__over {
-  font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-family: var(--font-pixel);
+  font-size: 1.6rem;
   color: var(--px-red);
   margin: 0;
+  font-weight: 700;
 }
 
 .arcade__keys {
@@ -988,8 +1012,8 @@ kbd {
 .arcade__pad button {
   flex: 1;
   padding: 16px 0;
-  font-family: var(--font-display);
-  font-size: 0.8rem;
+  font-family: var(--font-pixel);
+  font-size: 1.25rem;
   background: var(--surface);
   border: var(--border) solid var(--ink);
   border-radius: var(--radius);
@@ -997,6 +1021,7 @@ kbd {
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+  font-weight: 700;
 }
 
 .arcade__pad button:active {
@@ -1042,10 +1067,11 @@ kbd {
 }
 
 .stat__num {
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 2.4vw, 1.4rem);
-  line-height: 1.5;
+  font-family: var(--font-pixel);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  line-height: 1.2;
   font-variant-numeric: tabular-nums;
+  font-weight: 700;
 }
 
 .stat p {
@@ -1116,8 +1142,8 @@ kbd {
 }
 
 .timeline__item h3 {
-  font-size: 0.75rem;
-  line-height: 1.7;
+  font-size: 1.3rem;
+  line-height: 1.3;
 }
 
 .timeline__org {
@@ -1211,7 +1237,7 @@ kbd {
 
 .contact__foot {
   margin: 28px 0 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 
@@ -1309,21 +1335,23 @@ kbd {
 
 .intro__version {
   margin: 8px 0 0;
-  font-family: var(--font-display);
-  font-size: clamp(0.6rem, 2vw, 0.8rem);
+  font-family: var(--font-pixel);
+  font-size: 1.15rem;
   color: var(--accent-text);
+  font-weight: 600;
 }
 
 .intro__start {
   margin: 28px 0 0;
-  font-family: var(--font-display);
-  font-size: clamp(0.75rem, 2.4vw, 1rem);
+  font-family: var(--font-pixel);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
   animation: blink 0.9s steps(1) 2.2s infinite;
+  font-weight: 700;
 }
 
 .intro__copy {
   margin: 20px 0 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 
@@ -1332,7 +1360,6 @@ kbd {
   right: 20px;
   bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   padding: 10px 14px;
-  font-size: 0.6rem;
 }
 
 /* ---------- Reduced motion ---------- */

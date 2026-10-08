@@ -43,8 +43,9 @@
   --shadow-lg: 6px 6px 0 var(--ink);
 
   /* Type */
-  --font-display: 'Press Start 2P', ui-monospace, Menlo, monospace;
-  --font-body: 'Pixelify Sans', ui-rounded, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Press Start 2P', ui-monospace, Menlo, monospace; /* logo, h1, h2 only */
+  --font-pixel: 'Pixelify Sans', var(--font-display); /* tabs, h3/h4, numbers (18px+) */
+  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   color-scheme: light;
 }

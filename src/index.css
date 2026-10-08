@@ -143,20 +143,10 @@ h1:focus {
   }
 }
 
-/* Pixel art drawn by <PixelSprite> */
+/* Pixel art drawn by <PixelIcon> */
 .px-icon {
   display: inline-block;
   flex: none;
-}
-
-.sprite {
-  display: inline-block;
-  position: relative;
-  flex: none;
-}
-
-.sprite > span {
-  display: block;
 }
 
 /* ---------- Dialogue boxes ---------- */
@@ -471,21 +461,55 @@ kbd {
 .hero__build {
   font-size: clamp(1.2rem, 2.4vw, 1.5rem);
   margin: 20px 0 0;
-  min-height: 1.7em;
 }
 
-.hero__word {
-  display: inline-block;
+.hero__word .tw__text {
   font-weight: 700;
   background: var(--px-mint);
   border: 2px solid var(--ink);
   padding: 0 8px;
-  animation: word-in 0.3s steps(3);
 }
 
-@keyframes word-in {
-  from {
-    clip-path: inset(0 100% 0 0);
+.hero__word .tw__text:empty {
+  visibility: hidden;
+}
+
+/* Typewriter: the invisible ghost reserves the final size so nothing shifts */
+.tw {
+  display: inline-grid;
+  vertical-align: bottom;
+}
+
+.tw > * {
+  grid-area: 1 / 1;
+}
+
+.tw__ghost {
+  visibility: hidden;
+}
+
+.tw__text {
+  justify-self: start;
+  white-space: pre-wrap;
+}
+
+.tw__cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.12em;
+  background: currentColor;
+}
+
+/* Blinks (about once a second, hard on/off) only while text is holding still */
+.tw__cursor.is-idle {
+  animation: cursor-blink 1.06s steps(1) infinite;
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
   }
 }
 
@@ -1388,4 +1412,13 @@ kbd {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Dev-only: ?rm=1 forces the same behavior (see src/motion.js) */
+.force-rm *,
+.force-rm *::before,
+.force-rm *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
 }

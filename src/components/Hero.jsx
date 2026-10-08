@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+import { useTypewriter } from '../hooks/useTypewriter'
+import { useIntroPlaying } from '../introState'
+import { useReducedMotion } from '../motion'
 import { Link } from 'react-router'
 import { ICONS } from '../art/icons'
 import { buildWords, profile, toolbox } from '../data'
@@ -60,13 +63,29 @@ function Scope() {
   )
 }
 
-function Hero() {
-  const [i, setI] = useState(0)
+const NAME = [profile.firstName]
+const BUILD_SENTENCE = `I build ${buildWords.slice(0, -1).join(', ')}, and ${buildWords.at(-1)}.`
 
-  useEffect(() => {
-    const t = setInterval(() => setI((n) => (n + 1) % buildWords.length), 2400)
-    return () => clearInterval(t)
-  }, [])
+// Typed text with a reserved-size "ghost" so nothing shifts while it types
+function Typed({ text, ghost, idle, cursor, className = '' }) {
+  return (
+    <span className={`tw ${className}`}>
+      <span className="tw__ghost">{ghost}</span>
+      <span className="tw__text">
+        {text}
+        {cursor && <span className={`tw__cursor ${idle ? 'is-idle' : ''}`} />}
+      </span>
+    </span>
+  )
+}
+
+const LONGEST = buildWords.reduce((a, b) => (b.length > a.length ? b : a))
+
+function Hero() {
+  const intro = useIntroPlaying()
+  const reduced = useReducedMotion()
+  const name = useTypewriter(NAME, { loop: false, start: !intro })
+  const word = useTypewriter(buildWords, { start: name.done })
 
   const ticker = toolbox.flatMap((g) => g.items)
 
@@ -75,14 +94,23 @@ function Hero() {
       <div className="wrap hero__grid">
         <div className="hero__text">
           <p className="kicker">// hello, world</p>
+          {/* Screen readers get the full text once; the animated copies are aria-hidden */}
           <h1 tabIndex={-1}>
-            Hey, I'm <span className="name-hl">{profile.firstName}</span>!
+            <span className="sr-only">Hey, I'm {profile.firstName}!</span>
+            <span aria-hidden="true">
+              Hey, I'm{' '}
+              <Typed text={name.text} ghost={profile.firstName} idle={name.idle} cursor={!name.done} className="name-hl" />!
+            </span>
           </h1>
           <p className="hero__build">
-            I build{' '}
-            <span className="hero__word" key={i}>
-              {buildWords[i]}
-            </span>
+            <span className="sr-only">{BUILD_SENTENCE}</span>
+            {reduced ? (
+              <span aria-hidden="true">{BUILD_SENTENCE}</span>
+            ) : (
+              <span aria-hidden="true">
+                I build <Typed text={word.text} ghost={LONGEST} idle={word.idle} cursor={name.done} className="hero__word" />
+              </span>
+            )}
           </p>
           <p className="hero__lede">
             Electrical &amp; Computer Engineering student at UT Austin, Houston native, and first-gen engineer who

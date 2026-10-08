@@ -1,35 +1,22 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { profile } from '../data'
-import PixelSprite from './PixelSprite'
-import { HEART, heartPalette } from '../sprites'
+import { endIntro, markIntroSeen, useIntroPlaying } from '../introState'
+import { LOGO } from '../art/logos'
+import PixelIcon from './PixelIcon'
 
-const KEY = 'intro-seen'
 const AUTO_CONTINUE_MS = 4500
 const EXIT_MS = 350
 
-// Show once per browser session, and never for people who prefer reduced motion
-function shouldPlay() {
-  try {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return false
-    return sessionStorage.getItem(KEY) !== '1'
-  } catch {
-    return false
-  }
-}
-
+// Plays once per browser session and never under reduced motion (decided in introState.js)
 function Intro() {
-  const [state, setState] = useState(() => (shouldPlay() ? 'on' : 'off')) // on | leaving | off
-
+  const playing = useIntroPlaying()
+  const [leaving, setLeaving] = useState(false)
   const skipBtn = useRef(null)
-  const dismiss = useCallback(() => setState((s) => (s === 'on' ? 'leaving' : s)), [])
+  const dismiss = useCallback(() => setLeaving(true), [])
 
   useEffect(() => {
-    if (state !== 'on') return
-    try {
-      sessionStorage.setItem(KEY, '1')
-    } catch {
-      // storage blocked; the intro will just play again next load
-    }
+    if (!playing || leaving) return
+    markIntroSeen()
     document.body.style.overflow = 'hidden'
     skipBtn.current?.focus()
     window.addEventListener('keydown', dismiss)
@@ -39,19 +26,19 @@ function Intro() {
       window.removeEventListener('keydown', dismiss)
       clearTimeout(t)
     }
-  }, [state, dismiss])
+  }, [playing, leaving, dismiss])
 
   useEffect(() => {
-    if (state !== 'leaving') return
-    const t = setTimeout(() => setState('off'), EXIT_MS)
+    if (!leaving) return
+    const t = setTimeout(endIntro, EXIT_MS)
     return () => clearTimeout(t)
-  }, [state])
+  }, [leaving])
 
-  if (state === 'off') return null
+  if (!playing) return null
 
   return (
     <div
-      className={`intro ${state === 'leaving' ? 'is-leaving' : ''}`}
+      className={`intro ${leaving ? 'is-leaving' : ''}`}
       role="dialog"
       aria-modal="true"
       aria-label="Title screen"
@@ -61,7 +48,7 @@ function Intro() {
         NS<span className="intro__reg">®</span>
       </div>
       <div className="intro__title">
-        <PixelSprite rows={HEART} palette={heartPalette} size={6} className="intro__sprite" />
+        <PixelIcon rows={LOGO} size={96} className="intro__sprite" />
         <p className="intro__name">{profile.firstName.toUpperCase()}</p>
         <p className="intro__version">~ ECE Version ~</p>
         <p className="intro__start">▶ PRESS START</p>

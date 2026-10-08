@@ -56,7 +56,14 @@ export const interests = [
   },
 ]
 
-// The "Right now" board
+// Home-page status monitor readouts. Edit these whenever you like.
+export const monitor = {
+  bpm: 72, // the heart readout on the monitor
+  coffee: 2, // cups of coffee
+  coffeeUnit: 'cups today',
+}
+
+// The "Right now" board (also cycles on the status monitor)
 export const now = [
   { verb: 'Building', what: 'A wearable fitness tracker with a custom PCB, BLE streaming, and a native iOS app' },
   { verb: 'Writing', what: 'An LC-3b assembler plus instruction- and microarchitecture-level simulators in C' },

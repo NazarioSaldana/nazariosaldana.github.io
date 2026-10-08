@@ -612,6 +612,7 @@ kbd {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin-top: 14px;
+  margin: 14px 0 0;
 }
 
 .scope__readouts > div {
@@ -621,6 +622,78 @@ kbd {
   display: flex;
   flex-direction: column;
   min-width: 0;
+}
+
+.scope__bpm {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--px-gb-ink);
+  z-index: 1;
+  padding: 0 6px;
+  background: var(--px-gb);
+  border: 2px solid var(--px-gb-ink);
+}
+
+.scope__status {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--px-gb);
+  color: var(--px-gb-ink);
+  border: var(--border) solid var(--ink);
+}
+
+/* Reserve three lines so rotating items never shift the layout */
+.scope__now {
+  flex: 1;
+  margin: 0;
+  min-height: 4.8em;
+  line-height: 1.6;
+  font-size: 1rem;
+  animation: now-in 0.3s steps(3);
+}
+
+.scope__now-label {
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+@keyframes now-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.scope__next {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 0.8rem;
+  background: var(--px-white);
+  border: 3px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.scope__next:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.scope__readouts dd {
+  margin: 0;
 }
 
 .scope__label,

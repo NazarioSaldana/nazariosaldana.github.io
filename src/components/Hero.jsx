@@ -1,67 +1,11 @@
-import { useEffect, useState } from 'react'
 import { useTypewriter } from '../hooks/useTypewriter'
 import { useIntroPlaying } from '../introState'
 import { useReducedMotion } from '../motion'
 import { Link } from 'react-router'
 import { ICONS } from '../art/icons'
 import { buildWords, profile, toolbox } from '../data'
+import Monitor from './Monitor'
 import PixelIcon from './PixelIcon'
-
-// One beat of an ECG trace, 200 units wide. Two are visible at a time; a third is drawn
-// offscreen and the whole path scrolls left by one beat on a loop, so it never seams.
-const BEAT = 'L20 50 L60 50 L68 44 L76 50 L90 50 L96 58 L104 10 L112 78 L120 50 L140 50 L152 40 L166 50 L200 50'
-const shift = (dx) => BEAT.replace(/L(\d+)/g, (_, x) => `L${+x + dx}`)
-const ECG = `M0 50 ${BEAT} ${shift(200)} ${shift(400)}`
-
-function rand(min, max) {
-  return Math.round(min + Math.random() * (max - min))
-}
-
-function Scope() {
-  const [vitals, setVitals] = useState({ hr: 72, spo2: 98, steps: 4210 })
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setVitals((v) => ({ hr: rand(68, 79), spo2: rand(97, 99), steps: v.steps + rand(0, 4) }))
-    }, 1200)
-    return () => clearInterval(t)
-  }, [])
-
-  return (
-    <div className="scope" aria-hidden="true">
-      <div className="scope__bar">
-        <span className="dot dot--live" /> WEARABLE_TRACKER.ble
-        <span className="scope__tag">demo</span>
-      </div>
-      <div className="scope__screen">
-        <svg viewBox="0 0 400 90" preserveAspectRatio="none" className="scope__trace">
-          <g className="scope__scroll">
-            <path d={ECG} />
-          </g>
-        </svg>
-      </div>
-      <div className="scope__readouts">
-        <div>
-          <span className="scope__label">HR</span>
-          <span className="scope__value">
-            <PixelIcon rows={ICONS.heart.rows} size={16} className="heart" /> {vitals.hr}
-          </span>
-          <span className="scope__unit">bpm</span>
-        </div>
-        <div>
-          <span className="scope__label">SpO₂</span>
-          <span className="scope__value">{vitals.spo2}</span>
-          <span className="scope__unit">%</span>
-        </div>
-        <div>
-          <span className="scope__label">Steps</span>
-          <span className="scope__value">{vitals.steps.toLocaleString()}</span>
-          <span className="scope__unit">today</span>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 const NAME = [profile.firstName]
 const BUILD_SENTENCE = `I build ${buildWords.slice(0, -1).join(', ')}, and ${buildWords.at(-1)}.`
@@ -143,7 +87,7 @@ function Hero() {
             </li>
           </ul>
         </div>
-        <Scope />
+        <Monitor />
       </div>
 
       <div className="ticker" aria-hidden="true">

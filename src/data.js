@@ -31,11 +31,6 @@ export const about = [
 // `icon` is a key from src/art/icons.js
 export const interests = [
   {
-    icon: 'ball',
-    title: 'FC Barcelona',
-    text: "Blaugrana through and through. I've been a culer since [how/when you got hooked], and [favorite player] is still my all-time favorite. Match days mean [how you watch, e.g. early kickoffs with café de olla]. Visca el Barça!",
-  },
-  {
     icon: 'flag',
     title: 'Mexican heritage',
     text: 'Family, food, and cultura. Being first-gen is a big part of why I do what I do.',

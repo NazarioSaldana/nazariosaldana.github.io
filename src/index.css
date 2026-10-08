@@ -850,6 +850,11 @@ kbd {
   background: var(--px-lavender);
 }
 
+/* An odd card out spans the full row instead of leaving a gap */
+.interest:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .interest__icon {
   display: flex;
   flex: none;

@@ -1,32 +1,6 @@
 // Original pixel-art icons that replace emoji across the site.
 // Each entry: { rows, label } where `label` is the alt text.
-import { blank, outline, rect, stamp, toRows } from './grid.js'
-
-const BALL = [
-  '....kkkk....',
-  '..kkwwwwkk..',
-  '.kkwwwwwwkk.',
-  '.kwwwwwwwwk.',
-  'kwwwwkkwwwwk',
-  'kwwwkkkkwwwk',
-  'kkwwkkkkwwkk',
-  'kkwwwkkwwwkk',
-  '.kwwwwwwwwk.',
-  '.kwwwwwwwwk.',
-  '..kkwkkwkk..',
-  '....kkkk....',
-]
-
-function ballOnStripes() {
-  const g = blank(16, 16)
-  for (let x = 0; x < 16; x += 4) {
-    rect(g, x, 0, 2, 16, 'B')
-    rect(g, x + 2, 0, 2, 16, 'A')
-  }
-  outline(g, 0, 0, 16, 16, 'k')
-  stamp(g, BALL, 2, 2)
-  return toRows(g)
-}
+import { blank, outline, rect, toRows } from './grid.js'
 
 function flag() {
   const g = blank(16, 12)
@@ -174,7 +148,6 @@ export const PLAY = [
 ]
 
 export const ICONS = {
-  ball: { rows: ballOnStripes(), label: 'Pixel soccer ball on blue and garnet stripes' },
   flag: { rows: flag(), label: 'Pixel green, white, and red tricolor flag' },
   screwdriver: { rows: SCREWDRIVER, label: 'Pixel screwdriver' },
   invader: { rows: INVADER, label: 'Pixel space invader' },

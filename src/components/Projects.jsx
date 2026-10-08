@@ -107,13 +107,15 @@ function Projects() {
                 {p.youtubeId && (
                   <span className="card__play">
                     <PixelIcon rows={ICONS.play.rows} size={36} />
-                    <span className="sr-only">Has video</span>
                   </span>
                 )}
                 {p.status && <span className="badge badge--float">{p.status}</span>}
               </div>
               <div className="card__body">
-                <h3>{p.title}</h3>
+                <h3>
+                  {p.title}
+                  {p.youtubeId && <span className="sr-only"> (has video)</span>}
+                </h3>
                 <p>{p.description}</p>
                 <span className="card__tech">{p.tech}</span>
               </div>

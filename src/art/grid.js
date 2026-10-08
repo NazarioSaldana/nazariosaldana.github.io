@@ -22,11 +22,6 @@ export function stamp(g, rows, x, y) {
   rows.forEach((row, j) => [...row].forEach((ch, i) => ch !== '.' && rect(g, x + i, y + j, 1, 1, ch)))
 }
 
-// Swap characters in rows, e.g. recolor(FONT.N, { k: 'w' })
-export function recolor(rows, map) {
-  return rows.map((r) => [...r].map((c) => map[c] ?? c).join(''))
-}
-
 // Build symmetric art from its left half
 export function mirror(half, odd = false) {
   return half.map((r) => r + [...r].reverse().join('').slice(odd ? 1 : 0))
@@ -34,13 +29,6 @@ export function mirror(half, odd = false) {
 
 export const toRows = (g) => g.map((r) => r.join(''))
 
-// 3x5 and 4x7 letters for monograms
-export const FONT = {
-  N: ['k..k', 'kk.k', 'kk.k', 'k.kk', 'k.kk', 'k..k', 'k..k'],
-  S: ['.kkk', 'k...', 'k...', '.kk.', '...k', '...k', 'kkk.'],
-  n3: ['k.k', 'kkk', 'kkk', 'k.k', 'k.k'],
-  s3: ['.kk', 'k..', '.k.', '..k', 'kk.'],
-}
 
 export function disc(g, cx, cy, r, ch) {
   for (let y = cy - r; y <= cy + r; y++)

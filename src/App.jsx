@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router'
 import { profile } from './data'
 import { tabs } from './tabs'
@@ -13,9 +13,6 @@ import Leadership from './components/Leadership'
 import Toolbox from './components/Toolbox'
 import Contact from './components/Contact'
 import Cat from './components/Cat/Cat'
-
-// Dev-only design lab; import.meta.env.DEV is false in production so this is tree-shaken out
-const Lab = import.meta.env.DEV ? lazy(() => import('./lab/Lab')) : null
 
 function Layout() {
   const { pathname } = useLocation()
@@ -64,16 +61,6 @@ function App() {
         <Route path="arcade" element={<Arcade />} />
         <Route path="experience" element={<Leadership />} />
         <Route path="skills" element={<Toolbox />} />
-        {Lab && (
-          <Route
-            path="lab"
-            element={
-              <Suspense>
-                <Lab />
-              </Suspense>
-            }
-          />
-        )}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

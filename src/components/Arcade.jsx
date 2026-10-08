@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { ICONS } from '../art/icons'
+import PixelIcon from './PixelIcon'
 
 // Logical canvas size (scaled with CSS), matches the 4:3 feel of the original LCD build
 const W = 480
@@ -331,7 +333,12 @@ function Arcade() {
               WAVE <b>{hud.wave}</b>
             </span>
             <span>
-              LIVES <b>{'♥'.repeat(Math.max(0, hud.lives)) || '–'}</b>
+              LIVES{' '}
+              <b className="arcade__lives" aria-label={`${Math.max(0, hud.lives)} lives`}>
+                {hud.lives > 0
+                  ? Array.from({ length: hud.lives }, (_, i) => <PixelIcon key={i} rows={ICONS.heart.rows} size={14} />)
+                  : '–'}
+              </b>
             </span>
             <span>
               BEST <b>{String(best).padStart(5, '0')}</b>

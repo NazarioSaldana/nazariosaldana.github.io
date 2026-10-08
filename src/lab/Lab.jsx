@@ -1,6 +1,7 @@
 // Dev-only preview page (#/lab). Never included in production builds.
 import PixelIcon from '../components/PixelIcon'
 import { LOGOS } from '../art/logos'
+import { ICONS } from '../art/icons'
 import { PAIRS, PALETTES, contrast } from './palettes'
 import './lab.css'
 
@@ -96,6 +97,17 @@ function Lab() {
               <div className="lab-logo__tab">
                 <PixelIcon rows={l.rows} size={16} /> Nazario Saldaña
               </div>
+            </figure>
+          ))}
+        </div>
+
+        <h2 className="lab-h2">Icons</h2>
+        <div className="lab-icons">
+          {Object.entries(ICONS).map(([id, i]) => (
+            <figure key={id} className="dialog lab-icon">
+              <PixelIcon rows={i.rows} size={64} label={i.label} />
+              <PixelIcon rows={i.rows} size={32} />
+              <figcaption>{id}</figcaption>
             </figure>
           ))}
         </div>

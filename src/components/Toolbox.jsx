@@ -1,4 +1,6 @@
+import { ICONS } from '../art/icons'
 import { coursework, honors, toolbox } from '../data'
+import PixelIcon from './PixelIcon'
 
 function Toolbox() {
   return (
@@ -39,7 +41,7 @@ function Toolbox() {
           <div className="honors__list">
             {honors.map((h) => (
               <span className="honor" key={h}>
-                🏅 {h}
+                <PixelIcon rows={ICONS.medal.rows} size={20} /> {h}
               </span>
             ))}
           </div>

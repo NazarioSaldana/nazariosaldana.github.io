@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
+import { ICONS } from '../art/icons'
 import { projects } from '../data'
+import PixelIcon from './PixelIcon'
 
 function Thumb({ project }) {
   if (project.youtubeId) {
@@ -42,7 +44,7 @@ function ProjectModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <button ref={closeBtn} className="modal__close px-btn" onClick={onClose} aria-label="Close">
-          ✕
+          <PixelIcon rows={ICONS.close.rows} size={16} />
         </button>
         <div className="modal__scroll">
           <div className="modal__media">

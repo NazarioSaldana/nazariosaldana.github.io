@@ -127,6 +127,11 @@ h1:focus {
 }
 
 /* Pixel art drawn by <PixelSprite> */
+.px-icon {
+  display: inline-block;
+  flex: none;
+}
+
 .sprite {
   display: inline-block;
   position: relative;
@@ -592,8 +597,8 @@ kbd {
 }
 
 .heart {
-  color: var(--px-red-strong);
   display: inline-block;
+  vertical-align: -2px;
   animation: beat 0.9s steps(1) infinite;
 }
 
@@ -630,12 +635,13 @@ kbd {
   padding: 10px 0;
   white-space: nowrap;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
 }
 
-.ticker__track span::after {
-  content: '★';
+.ticker__sep {
   margin: 0 22px;
-  color: var(--accent-text);
+  vertical-align: -1px;
 }
 
 @keyframes marquee {
@@ -731,8 +737,9 @@ kbd {
 }
 
 .interest__icon {
-  font-size: 1.5rem;
-  line-height: 1.2;
+  display: flex;
+  flex: none;
+  padding-top: 2px;
 }
 
 .interest h4 {
@@ -887,6 +894,8 @@ kbd {
   padding: 0;
   font-size: 0.8rem;
   background: var(--px-red);
+  display: grid;
+  place-items: center;
 }
 
 .modal__media {
@@ -947,6 +956,12 @@ kbd {
   font-size: 1.1rem;
   padding: 0 4px 12px;
   font-weight: 600;
+}
+
+.arcade__lives {
+  display: inline-flex;
+  gap: 4px;
+  vertical-align: -1px;
 }
 
 .arcade__hud b {
@@ -1202,6 +1217,9 @@ kbd {
   border: var(--border) solid var(--ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* ---------- Contact footer ---------- */

@@ -1,4 +1,6 @@
+import { ICONS } from '../art/icons'
 import { about, interests } from '../data'
+import PixelIcon from './PixelIcon'
 
 function About() {
   return (
@@ -21,7 +23,9 @@ function About() {
             <div className="interests">
               {interests.map((it) => (
                 <div className="interest" key={it.title}>
-                  <span className="interest__icon">{it.icon}</span>
+                  <span className="interest__icon">
+                    <PixelIcon rows={ICONS[it.icon].rows} label={ICONS[it.icon].label} size={32} />
+                  </span>
                   <div>
                     <h4>{it.title}</h4>
                     <p>{it.text}</p>

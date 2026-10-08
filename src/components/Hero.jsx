@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
+import { ICONS } from '../art/icons'
 import { buildWords, profile, toolbox } from '../data'
+import PixelIcon from './PixelIcon'
 
 // One beat of an ECG trace, 200 units wide. Two are visible at a time; a third is drawn
 // offscreen and the whole path scrolls left by one beat on a loop, so it never seams.
@@ -39,7 +41,7 @@ function Scope() {
         <div>
           <span className="scope__label">HR</span>
           <span className="scope__value">
-            <span className="heart">♥</span> {vitals.hr}
+            <PixelIcon rows={ICONS.heart.rows} size={16} className="heart" /> {vitals.hr}
           </span>
           <span className="scope__unit">bpm</span>
         </div>
@@ -102,8 +104,12 @@ function Hero() {
             </button>
           </div>
           <ul className="hero__chips">
-            <li>📍 {profile.location}</li>
-            <li>🎓 {profile.school}</li>
+            <li>
+              <PixelIcon rows={ICONS.pin.rows} label={ICONS.pin.label} size={18} /> {profile.location}
+            </li>
+            <li>
+              <PixelIcon rows={ICONS.cap.rows} label={ICONS.cap.label} size={16} /> {profile.school}
+            </li>
             <li>
               <span className="dot dot--live" /> Open to embedded &amp; firmware internships
             </li>
@@ -115,7 +121,10 @@ function Hero() {
       <div className="ticker" aria-hidden="true">
         <div className="ticker__track">
           {[...ticker, ...ticker].map((t, idx) => (
-            <span key={idx}>{t}</span>
+            <span key={idx}>
+              {t}
+              <PixelIcon rows={ICONS.sparkle.rows} size={14} className="ticker__sep" />
+            </span>
           ))}
         </div>
       </div>

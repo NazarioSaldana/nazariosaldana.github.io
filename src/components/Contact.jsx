@@ -39,7 +39,7 @@ function Contact() {
             </a>
           </div>
           <p className="contact__foot">
-            © {new Date().getFullYear()} {profile.name} · Built with React &amp; a lot of coffee · Hecho en Texas
+            © {new Date().getFullYear()} {profile.name} · Build with React &amp; a lot of caffeine · Hecho en Texas
           </p>
         </div>
       </div>

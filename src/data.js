@@ -76,13 +76,13 @@ export const projects = [
     id: 'tracker',
     title: 'Wearable Fitness Tracker',
     status: 'In progress',
-    tech: 'C, BLE, KiCad, Swift',
+    tech: 'C, BLE, KiCad',
     description: 'A wrist-worn tracker that streams heart rate, SpO2, and motion data over BLE to a native iOS app.',
     fullDetails:
       'A from-scratch wearable: a custom PCB, sensor integration, low-power firmware, and a phone app to show it all. The heart-rate widget at the top of this site is a nod to it.',
     process:
-      'Integrated heart rate, SpO2, and a 6-axis motion sensor for continuous physiological and motion data. Writing custom C firmware for real-time signal processing and low-power BLE streaming on a compact Li-Po cell. Designed a custom PCB covering power management and sensor routing, and building a native iOS app in Swift that receives and displays heart rate, activity, and other health metrics.',
-    skills: ['Embedded C', 'BLE', 'PCB Design (KiCad)', 'Power Management', 'Signal Processing', 'Swift / iOS'],
+      'Integrated heart rate, SpO2, and a 6-axis motion sensor for continuous physiological and motion data. Writing custom C firmware for real-time signal processing and low-power BLE streaming on a compact Li-Po cell. Designed a custom PCB covering power management and sensor routing, and building a native iOS app that receives and displays heart rate, activity, and other health metrics.',
+    skills: ['Embedded C', 'BLE', 'PCB Design (KiCad)', 'Power Management', 'Signal Processing', 'iOS'],
     icon: '💓',
   },
   {
@@ -181,8 +181,8 @@ export const leadership = [
 ]
 
 export const toolbox = [
-  { group: 'Languages', items: ['C / C++', 'ARM Assembly', 'Verilog', 'Python', 'Java', 'Swift'] },
-  { group: 'Software', items: ['VS Code', 'Xilinx Vivado', 'KiCad', 'LTspice', 'MATLAB', 'AutoCAD', 'Autodesk Inventor', 'Revit'] },
+  { group: 'Languages', items: ['C / C++', 'ARM Assembly', 'Verilog', 'Python', 'Java'] },
+  { group: 'Software', items: ['VS Code', 'Xilinx Vivado', 'KiCad', 'LTspice', 'MATLAB'] },
   { group: 'Hardware', items: ['Oscilloscope', 'Microcontrollers', 'Raspberry Pi', 'Arduino', 'FPGA', 'Soldering Iron'] },
 ]
 

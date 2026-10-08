@@ -3,35 +3,35 @@
    Rule of thumb: text is always --ink / --muted / --accent-text on a light fill;
    the pastels are fills and decoration, never text on cream. */
 :root {
-  /* Pastel palette */
-  --px-cream: #fff8e7;
-  --px-cream-2: #f6ecd2;
+  /* Pastel palette ("Pallet") */
+  --px-cream: #fff6e5;
+  --px-cream-2: #f5e9cf;
   --px-white: #ffffff;
-  --px-red: #f7b2b2;
-  --px-red-strong: #e0606e;
-  --px-mint: #bfe8cf;
-  --px-sky: #b4dcf2;
-  --px-lemon: #ffe89a;
-  --px-lavender: #d6c8f2;
-  --px-peach: #ffd2b0;
-  --px-gb: #cfe3a6; /* handheld LCD green */
-  --px-gb-ink: #2f4a2f;
+  --px-red: #f6a6a6;
+  --px-red-strong: #e05a6a;
+  --px-mint: #a8e2c4;
+  --px-sky: #a7d3f5;
+  --px-lemon: #ffe38a;
+  --px-lavender: #cfc0f5;
+  --px-peach: #ffc9a3;
+  --px-gb: #cde5a1; /* handheld LCD green */
+  --px-gb-ink: #2d4a2d;
 
   /* Roles */
   --bg: var(--px-cream);
   --bg-tint: var(--px-cream-2);
   --surface: var(--px-white);
-  --ink: #2b2b3a;
-  --muted: #545468;
-  --accent-text: #922a3f; /* readable red for small labels */
-  --focus: #2f62c9;
+  --ink: #2a2838;
+  --muted: #524f64;
+  --accent-text: #8f2b3f; /* readable red for small labels */
+  --focus: #2c5fc7;
   --live: #3f9d5e;
   --dialog-rule: var(--px-sky); /* inner rule of dialogue boxes */
-  --dot: rgba(43, 43, 58, 0.09);
+  --dot: rgba(42, 40, 56, 0.09);
 
   /* Arcade canvas (read by Arcade.jsx) */
-  --game-bg: #2b2b3a;
-  --game-ink: #fff8e7;
+  --game-bg: #2a2838;
+  --game-ink: #fff6e5;
   --game-a: var(--px-sky);
   --game-b: var(--px-red);
   --game-c: var(--px-lemon);

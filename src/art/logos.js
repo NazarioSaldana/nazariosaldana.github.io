@@ -75,3 +75,6 @@ export const LOGOS = {
   chip: { name: 'C · NS chip', rows: chip() },
   cat: { name: 'D · Tuxedo cat', rows: catFace },
 }
+
+// The chosen site logo (header + favicon)
+export const LOGO = LOGOS.cat.rows

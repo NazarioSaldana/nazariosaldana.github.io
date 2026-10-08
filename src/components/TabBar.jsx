@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router'
 import { profile } from '../data'
+import { LOGO } from '../art/logos'
+import PixelIcon from './PixelIcon'
 import { tabs } from '../tabs'
 
 function TabBar() {
@@ -28,7 +30,7 @@ function TabBar() {
     <header className="tabbar">
       <div className="tabbar__inner">
         <NavLink to="/" className="tabbar__logo" onClick={close} aria-label={`${profile.name}, home`}>
-          NS<span className="tabbar__cursor">_</span>
+          <PixelIcon rows={LOGO} size={40} />
         </NavLink>
 
         <button

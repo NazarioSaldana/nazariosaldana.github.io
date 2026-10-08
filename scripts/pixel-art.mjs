@@ -10,6 +10,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { deflateSync } from 'node:zlib'
 import { COLORS } from '../src/art/colors.js'
+import { COVERS } from '../src/art/covers.js'
 import { LOGO } from '../src/art/logos.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -132,6 +133,12 @@ function icons() {
   write('icons/icon-512.png', padded(512, 28))
 }
 
-const targets = { icons }
+// Project covers: 64x36 art at 4x (256x144) so they stay crisp even where
+// image-rendering: pixelated isn't applied (link previews, etc.)
+function covers() {
+  for (const [id, rows] of Object.entries(COVERS)) write(`covers/${id}.png`, png(render(rows, { scale: 4 })))
+}
+
+const targets = { icons, covers }
 const wanted = process.argv.slice(2)
 for (const [name, fn] of Object.entries(targets)) if (!wanted.length || wanted.includes(name)) fn()

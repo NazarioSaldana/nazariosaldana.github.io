@@ -4,18 +4,8 @@ import { ICONS } from '../art/icons'
 import { projects } from '../data'
 import PixelIcon from './PixelIcon'
 
-function Thumb({ project }) {
-  if (project.youtubeId) {
-    return <img src={`https://img.youtube.com/vi/${project.youtubeId}/hqdefault.jpg`} alt="" loading="lazy" />
-  }
-  if (project.image) {
-    return <img src={project.image} alt="" loading="lazy" />
-  }
-  return (
-    <div className="thumb-art">
-      <span>{project.icon}</span>
-    </div>
-  )
+function Cover({ project }) {
+  return <img src={project.image} alt={project.imageAlt} width="256" height="144" loading="lazy" className="cover" />
 }
 
 function ProjectModal({ project, onClose }) {
@@ -48,7 +38,7 @@ function ProjectModal({ project, onClose }) {
         </button>
         <div className="modal__scroll">
           <div className="modal__media">
-            {project.mediaType === 'video' ? (
+            {project.youtubeId ? (
               <iframe
                 src={`https://www.youtube.com/embed/${project.youtubeId}`}
                 title={project.title}
@@ -56,7 +46,7 @@ function ProjectModal({ project, onClose }) {
                 allowFullScreen
               />
             ) : (
-              <Thumb project={project} />
+              <Cover project={project} />
             )}
           </div>
           <div className="modal__body">
@@ -113,8 +103,13 @@ function Projects() {
           {projects.map((p) => (
             <Link key={p.id} to={`/projects/${p.id}`} className="card dialog">
               <div className="card__thumb">
-                <Thumb project={p} />
-                {p.mediaType === 'video' && <span className="card__play">▶</span>}
+                <Cover project={p} />
+                {p.youtubeId && (
+                  <span className="card__play">
+                    <PixelIcon rows={ICONS.play.rows} size={36} />
+                    <span className="sr-only">Has video</span>
+                  </span>
+                )}
                 {p.status && <span className="badge badge--float">{p.status}</span>}
               </div>
               <div className="card__body">

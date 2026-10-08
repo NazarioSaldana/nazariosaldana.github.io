@@ -10,7 +10,9 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { deflateSync } from 'node:zlib'
 import { COLORS } from '../src/art/colors.js'
+import { CAT_FRAMES } from '../src/art/cat.js'
 import { COVERS } from '../src/art/covers.js'
+import catConfig from '../src/components/Cat/cat.config.js'
 import { LOGO } from '../src/art/logos.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -139,6 +141,23 @@ function covers() {
   for (const [id, rows] of Object.entries(COVERS)) write(`covers/${id}.png`, png(render(rows, { scale: 4 })))
 }
 
-const targets = { icons, covers }
+// Cat sprite sheet: one row per state, frames left to right (layout from cat.config.js)
+function cat() {
+  const { frameWidth: fw, frameHeight: fh, states } = catConfig
+  const rows = Object.values(states).reduce((m, s) => Math.max(m, s.row + 1), 0)
+  const cols = Object.values(states).reduce((m, s) => Math.max(m, s.frames), 0)
+  const w = cols * fw
+  const h = rows * fh
+  const sheet = { w, h, px: new Uint8Array(w * h * 4) }
+  for (const [name, s] of Object.entries(states)) {
+    CAT_FRAMES[name].slice(0, s.frames).forEach((frame, i) => {
+      const { px } = render(frame, { w: fw, h: fh })
+      for (let y = 0; y < fh; y++) sheet.px.set(px.subarray(y * fw * 4, (y + 1) * fw * 4), ((s.row * fh + y) * w + i * fw) * 4)
+    })
+  }
+  write('sprites/cat-default.png', png(sheet))
+}
+
+const targets = { icons, covers, cat }
 const wanted = process.argv.slice(2)
 for (const [name, fn] of Object.entries(targets)) if (!wanted.length || wanted.includes(name)) fn()

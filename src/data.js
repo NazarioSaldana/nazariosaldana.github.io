@@ -31,26 +31,32 @@ export const about = [
 // `icon` is a key from src/art/icons.js
 export const interests = [
   {
+    icon: 'ball',
     title: 'FC Barcelona',
     text: "Blaugrana through and through. I've been a culer since [how/when you got hooked], and [favorite player] is still my all-time favorite. Match days mean [how you watch, e.g. early kickoffs with café de olla]. Visca el Barça!",
   },
   {
+    icon: 'flag',
     title: 'Mexican heritage',
     text: 'Family, food, and cultura. Being first-gen is a big part of why I do what I do.',
   },
   {
+    icon: 'screwdriver',
     title: 'Taking things apart',
     text: 'If it has a circuit board, I want to know how it works (and whether I can make my own).',
   },
   {
+    icon: 'invader',
     title: 'Retro games',
     text: 'So much so that I built Space Invaders on a microcontroller. You can play it in the Arcade tab.',
   },
   {
+    icon: 'handHeart',
     title: 'Paying it forward',
     text: "Mentoring first-years and running SHPE events. Somebody helped me, so I'm helping the next person.",
   },
   {
+    icon: 'hat',
     title: 'Houston ↔ Austin',
     text: "H-Town raised, Austin based. I'm always happy to argue about the best taco spot.",
   },

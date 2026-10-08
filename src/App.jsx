@@ -12,6 +12,7 @@ import Arcade from './components/Arcade'
 import Leadership from './components/Leadership'
 import Toolbox from './components/Toolbox'
 import Contact from './components/Contact'
+import Cat from './components/Cat/Cat'
 
 // Dev-only design lab; import.meta.env.DEV is false in production so this is tree-shaken out
 const Lab = import.meta.env.DEV ? lazy(() => import('./lab/Lab')) : null
@@ -40,6 +41,7 @@ function Layout() {
         <Outlet />
       </main>
       <Contact />
+      <Cat />
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import { ICONS } from '../art/icons'
 import { projects } from '../data'
@@ -6,6 +6,53 @@ import PixelIcon from './PixelIcon'
 
 function Cover({ project }) {
   return <img src={project.image} alt={project.imageAlt} width="256" height="144" loading="lazy" className="cover" />
+}
+
+// <model-viewer> (and the three.js it bundles) only loads once a model is actually opened.
+// The pixel-art cover stays on top until the model has downloaded and rendered.
+function ModelView({ project }) {
+  const [ready, setReady] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+  const viewer = useRef(null)
+
+  useEffect(() => {
+    import('@google/model-viewer').then(() => setReady(true))
+  }, [])
+
+  useEffect(() => {
+    const el = viewer.current
+    if (!el) return
+    const onLoad = () => setLoaded(true)
+    el.addEventListener('load', onLoad)
+    return () => el.removeEventListener('load', onLoad)
+  }, [ready])
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  return (
+    <div className="model">
+      {ready && (
+        <model-viewer
+          ref={viewer}
+          src={project.model}
+          alt={project.modelAlt}
+          camera-controls=""
+          touch-action="pan-y"
+          {...(!reduceMotion && { 'auto-rotate': '' })}
+          auto-rotate-delay="0"
+          rotation-per-second="20deg"
+          camera-orbit="30deg 60deg auto"
+          shadow-intensity="1"
+          exposure="1.1"
+          interaction-prompt="none"
+        />
+      )}
+      <div className={`model__cover${loaded ? ' model__cover--hidden' : ''}`} aria-hidden={loaded}>
+        <Cover project={project} />
+      </div>
+      <span className="model__hint">{loaded ? 'Drag to rotate · scroll to zoom' : 'Loading 3D model…'}</span>
+    </div>
+  )
 }
 
 function ProjectModal({ project, onClose }) {
@@ -45,6 +92,8 @@ function ProjectModal({ project, onClose }) {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
+            ) : project.model ? (
+              <ModelView project={project} />
             ) : (
               <Cover project={project} />
             )}
@@ -96,7 +145,7 @@ function Projects() {
         <div className="section__head">
           <p className="kicker">projects</p>
           <h1 tabIndex={-1}>Things I've built</h1>
-          <p className="section__sub">Click any card for the full story, plus video when there is one.</p>
+          <p className="section__sub">Click any card for the full story, plus video or a 3D model when there is one.</p>
         </div>
 
         <div className="projects">
@@ -109,12 +158,14 @@ function Projects() {
                     <PixelIcon rows={ICONS.play.rows} size={36} />
                   </span>
                 )}
+                {p.model && <span className="badge badge--float badge--3d">3D</span>}
                 {p.status && <span className="badge badge--float">{p.status}</span>}
               </div>
               <div className="card__body">
                 <h3>
                   {p.title}
                   {p.youtubeId && <span className="sr-only"> (has video)</span>}
+                  {p.model && <span className="sr-only"> (has 3D model)</span>}
                 </h3>
                 <p>{p.description}</p>
                 <span className="card__tech">{p.tech}</span>

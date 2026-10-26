@@ -1017,6 +1017,54 @@ kbd {
   object-fit: cover;
 }
 
+/* Interactive 3D model in place of a video */
+.model {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 40%, var(--px-cream) 0%, var(--px-cream-2) 70%);
+}
+
+.model model-viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  cursor: grab;
+}
+
+.model model-viewer:active {
+  cursor: grabbing;
+}
+
+.model__cover {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.4s ease;
+}
+
+.model__cover--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.model__hint {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 2px 8px;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--px-white);
+  border: 2px solid var(--ink);
+  pointer-events: none;
+}
+
+.badge--3d {
+  left: auto;
+  right: 10px;
+  background: var(--px-sky);
+}
+
 .modal__body {
   padding: 24px clamp(18px, 4vw, 32px) 30px;
 }

@@ -12,6 +12,7 @@
     "contrast": "node scripts/check-contrast.mjs"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.4.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router": "^7.18.4"

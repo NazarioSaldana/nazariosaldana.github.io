@@ -7,7 +7,7 @@ export const profile = {
   email: 'nazariosaldana@utexas.edu',
   linkedin: 'https://www.linkedin.com/in/nazariosaldana',
   github: 'https://github.com/NazarioSaldana',
-  resume: 'resume.pdf',
+  resume: 'Nazario%20Saldana%20-%20Resume.pdf',
   location: 'Austin, TX',
   school: 'UT Austin · ECE · Class of 2028',
 }
